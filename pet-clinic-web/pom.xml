@@ -43,7 +43,7 @@
 
 
     <scm>
-        <developerConnection>scm:git:https://github.com/CharlesCZ</developerConnection>
+        <developerConnection>scm:https://github.com/CharlesCZ</developerConnection>
 
     </scm>
 
