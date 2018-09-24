@@ -43,7 +43,7 @@
         </plugins>
     </build>
 <scm>
-    <developerConnection>scm:git:git@github.com:CharlesCZ/sfg-pet-clinic.git</developerConnection>
+    <developerConnection>scm:https://github.com/CharlesCZ/sfg-pet-clinic.git</developerConnection>
     <tag>sfg-pet-clinic-0.0.1</tag>
   </scm>
 
