@@ -14,7 +14,7 @@ public abstract class AbstractMapService<T, ID> {
     }
 
     T findById(ID id) {
-        //sprawdz czy jest do tego odwloanie pozniej
+
         return map.get(id);
     }
 
