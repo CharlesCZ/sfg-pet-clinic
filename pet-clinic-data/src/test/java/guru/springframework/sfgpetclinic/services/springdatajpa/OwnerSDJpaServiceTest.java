@@ -18,16 +18,17 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
 class OwnerSDJpaServiceTest {
 
-
     public static final String LAST_NAME = "Smith";
     @Mock
-    OwnerRepository ownerRepository;
+     OwnerRepository ownerRepository;
 
     @Mock
     PetRepository petRepository;
@@ -38,6 +39,7 @@ class OwnerSDJpaServiceTest {
     @InjectMocks
     OwnerSDJpaService service;
 
+
     Owner returnOwner;
     @BeforeEach
     void setUp() {
@@ -47,9 +49,10 @@ class OwnerSDJpaServiceTest {
     @Test
     void findByLastName() {
 
-        when(ownerRepository.findByLastName(any())).thenReturn(returnOwner);
 
+        when(ownerRepository.findByLastName(any())).thenReturn(returnOwner);
         Owner smith=service.findByLastName(LAST_NAME);
+
 
         assertEquals(LAST_NAME,smith.getLastName());
 
@@ -72,12 +75,13 @@ class OwnerSDJpaServiceTest {
 
     @Test
     void findByID() {
-    when(ownerRepository.findById(anyLong())).thenReturn(Optional.of(returnOwner));
+        when(ownerRepository.findById(anyLong())).thenReturn(Optional.of(returnOwner));
 
-    Owner owner=service.findByID(1L);
+        Owner owner=service.findByID(1L);
 
-    assertNotNull(owner);
+        assertNotNull(owner);
     }
+
 
     @Test
     void findByIDNotFound() {
