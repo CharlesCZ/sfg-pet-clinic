@@ -54,6 +54,7 @@ public class PetController
     public String initCreationForm(Owner owner, Model model) {
         Pet pet = new Pet();
         owner.getPets().add(pet);
+        pet.setOwner(owner);
         model.addAttribute("pet", pet);
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
@@ -80,10 +81,10 @@ public class PetController
     }
 
     @PostMapping("/pets/{petId}/edit")
-    public String processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner, ModelMap model) {
+    public String processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner, Model model) {
         if (result.hasErrors()) {
             pet.setOwner(owner);
-            model.put("pet", pet);
+            model.addAttribute("pet", pet);
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         } else {
             owner.getPets().add(pet);
