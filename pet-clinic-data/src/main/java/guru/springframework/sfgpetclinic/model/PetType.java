@@ -28,8 +28,8 @@ public class PetType extends BaseEntity {
     }
 
     @Builder
-    public PetType(Long Id, String name) {
-        super(Id);
+    public PetType(Long id, String name) {
+        super(id);
         this.name = name;
     }
 
