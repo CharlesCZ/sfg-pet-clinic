@@ -1,5 +1,6 @@
 package guru.springframework.sfgpetclinic.controllers;
 
+
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.model.PetType;
@@ -18,7 +19,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
@@ -47,7 +47,6 @@ class PetControllerTest {
     Owner owner;
     Set<PetType> petTypes;
 
-
     @BeforeEach
     void setUp() {
         owner = Owner.builder().id(1l).build();
@@ -56,9 +55,10 @@ class PetControllerTest {
         petTypes.add(PetType.builder().id(1L).name("Dog").build());
         petTypes.add(PetType.builder().id(2L).name("Cat").build());
 
-        mockMvc = MockMvcBuilders.standaloneSetup(petController).build();
+        mockMvc = MockMvcBuilders
+                .standaloneSetup(petController)
+                .build();
     }
-
 
     @Test
     void initCreationForm() throws Exception {
@@ -68,11 +68,9 @@ class PetControllerTest {
         mockMvc.perform(get("/owners/1/pets/new"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("owner"))
-                .andExpect(model().attributeExists("types"))
                 .andExpect(model().attributeExists("pet"))
                 .andExpect(view().name("pets/createOrUpdatePetForm"));
     }
-
 
     @Test
     void processCreationForm() throws Exception {
@@ -95,7 +93,6 @@ class PetControllerTest {
         mockMvc.perform(get("/owners/1/pets/2/edit"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("owner"))
-                .andExpect(model().attributeExists("types"))
                 .andExpect(model().attributeExists("pet"))
                 .andExpect(view().name("pets/createOrUpdatePetForm"));
     }
@@ -111,8 +108,6 @@ class PetControllerTest {
 
         verify(petService).save(any());
     }
-
-
 
     @Test
     void populatePetTypes() {
