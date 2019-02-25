@@ -72,6 +72,7 @@ when(visitService.save(any())).thenReturn(Visit.builder().id(1L).description("so
 mockMvc.perform(post("/owners/1/pets/1/visits/new")
         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         .param("id","")
+        .param("date","2018-11-11")
         .param("description","some string")
 )
         .andExpect(status().is3xxRedirection())
